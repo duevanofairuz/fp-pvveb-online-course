@@ -13,14 +13,14 @@ if(isset($_POST['submit'])){
 
    $id = unique_id();
    $title = $_POST['title'];
-   $title = filter_var($title, FILTER_SANITIZE_STRING);
+   $title = filter_var($title);
    $description = $_POST['description'];
-   $description = filter_var($description, FILTER_SANITIZE_STRING);
+   $description = filter_var($description);
    $status = $_POST['status'];
-   $status = filter_var($status, FILTER_SANITIZE_STRING);
+   $status = filter_var($status);
 
    $image = $_FILES['image']['name'];
-   $image = filter_var($image, FILTER_SANITIZE_STRING);
+   $image = filter_var($image);
    $ext = pathinfo($image, PATHINFO_EXTENSION);
    $rename = unique_id().'.'.$ext;
    $image_size = $_FILES['image']['size'];
@@ -32,7 +32,7 @@ if(isset($_POST['submit'])){
 
    move_uploaded_file($image_tmp_name, $image_folder);
 
-   $message[] = 'new playlist created!';  
+   $message[] = 'Successfully added new Course playlist!';  
 
 }
 
@@ -59,39 +59,38 @@ if(isset($_POST['submit'])){
    
 <section class="playlist-form">
 
-   <h1 class="heading">create playlist</h1>
+   <h1 class="heading">Add Course Playlist</h1>
+
+   <?php
+      if(isset($message)){
+         foreach($message as $message){
+            echo '
+            <div class="message">
+               <span>'.$message.'</span>
+               <i class="fas fa-times" onclick="this.parentElement.remove();"></i>
+            </div>
+            ';
+         }
+      }
+   ?>
 
    <form action="" method="post" enctype="multipart/form-data">
-      <p>playlist status <span>*</span></p>
+      <p>Playlist Status<span>*</span></p>
       <select name="status" class="box" required>
-         <option value="" selected disabled>-- select status</option>
-         <option value="active">active</option>
-         <option value="deactive">deactive</option>
+         <option value="" selected disabled>-- Select playlist status</option>
+         <option value="active">Active</option>
+         <option value="deactive">Inactive</option>
       </select>
-      <p>playlist title <span>*</span></p>
-      <input type="text" name="title" maxlength="100" required placeholder="enter playlist title" class="box">
-      <p>playlist description <span>*</span></p>
-      <textarea name="description" class="box" required placeholder="write description" maxlength="1000" cols="30" rows="10"></textarea>
-      <p>playlist thumbnail <span>*</span></p>
+      <p>Playlist Title<span>*</span></p>
+      <input type="text" name="title" maxlength="100" required placeholder="Enter playlist title..." class="box">
+      <p>Description<span>*</span></p>
+      <textarea name="description" class="box" required placeholder="Write a short description for your playlist..." maxlength="1000" cols="30" rows="10"></textarea>
+      <p>Thumbnail<span>*</span></p>
       <input type="file" name="image" accept="image/*" required class="box">
       <input type="submit" value="create playlist" name="submit" class="btn">
    </form>
 
 </section>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 <?php include '../components/footer.php'; ?>
 

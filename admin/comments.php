@@ -12,7 +12,7 @@ if(isset($_COOKIE['tutor_id'])){
 if(isset($_POST['delete_comment'])){
 
    $delete_id = $_POST['comment_id'];
-   $delete_id = filter_var($delete_id, FILTER_SANITIZE_STRING);
+   $delete_id = filter_var($delete_id);
 
    $verify_comment = $conn->prepare("SELECT * FROM `comments` WHERE id = ?");
    $verify_comment->execute([$delete_id]);
@@ -53,7 +53,19 @@ if(isset($_POST['delete_comment'])){
 
    <h1 class="heading">user comments</h1>
 
-   
+   <?php
+      if(isset($message)){
+         foreach($message as $message){
+            echo '
+            <div class="message">
+               <span>'.$message.'</span>
+               <i class="fas fa-times" onclick="this.parentElement.remove();"></i>
+            </div>
+            ';
+         }
+      }
+   ?>
+
    <div class="show-comments">
       <?php
          $select_comments = $conn->prepare("SELECT * FROM `comments` WHERE tutor_id = ?");

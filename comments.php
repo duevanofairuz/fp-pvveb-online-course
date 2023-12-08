@@ -12,7 +12,7 @@ if(isset($_COOKIE['user_id'])){
 if(isset($_POST['delete_comment'])){
 
    $delete_id = $_POST['comment_id'];
-   $delete_id = filter_var($delete_id, FILTER_SANITIZE_STRING);
+   $delete_id = filter_var($delete_id);
 
    $verify_comment = $conn->prepare("SELECT * FROM `comments` WHERE id = ?");
    $verify_comment->execute([$delete_id]);
@@ -20,9 +20,9 @@ if(isset($_POST['delete_comment'])){
    if($verify_comment->rowCount() > 0){
       $delete_comment = $conn->prepare("DELETE FROM `comments` WHERE id = ?");
       $delete_comment->execute([$delete_id]);
-      $message[] = 'comment deleted successfully!';
+      $message[] = 'Comment deleted successfully!';
    }else{
-      $message[] = 'comment already deleted!';
+      $message[] = 'Comment already deleted!';
    }
 
 }
@@ -30,9 +30,9 @@ if(isset($_POST['delete_comment'])){
 if(isset($_POST['update_now'])){
 
    $update_id = $_POST['update_id'];
-   $update_id = filter_var($update_id, FILTER_SANITIZE_STRING);
+   $update_id = filter_var($update_id);
    $update_box = $_POST['update_box'];
-   $update_box = filter_var($update_box, FILTER_SANITIZE_STRING);
+   $update_box = filter_var($update_box);
 
    $verify_comment = $conn->prepare("SELECT * FROM `comments` WHERE id = ? AND comment = ? ORDER BY date DESC");
    $verify_comment->execute([$update_id, $update_box]);
@@ -71,14 +71,14 @@ if(isset($_POST['update_now'])){
 <?php
    if(isset($_POST['edit_comment'])){
       $edit_id = $_POST['comment_id'];
-      $edit_id = filter_var($edit_id, FILTER_SANITIZE_STRING);
+      $edit_id = filter_var($edit_id);
       $verify_comment = $conn->prepare("SELECT * FROM `comments` WHERE id = ? LIMIT 1");
       $verify_comment->execute([$edit_id]);
       if($verify_comment->rowCount() > 0){
          $fetch_edit_comment = $verify_comment->fetch(PDO::FETCH_ASSOC);
 ?>
 <section class="edit-comment">
-   <h1 class="heading">edti comment</h1>
+   <h1 class="heading">edit comment</h1>
    <form action="" method="post">
       <input type="hidden" name="update_id" value="<?= $fetch_edit_comment['id']; ?>">
       <textarea name="update_box" class="box" maxlength="1000" required placeholder="please enter your comment" cols="30" rows="10"><?= $fetch_edit_comment['comment']; ?></textarea>
@@ -90,7 +90,7 @@ if(isset($_POST['update_now'])){
 </section>
 <?php
    }else{
-      $message[] = 'comment was not found!';
+      $message[] = 'Comment was not found!';
    }
 }
 ?>

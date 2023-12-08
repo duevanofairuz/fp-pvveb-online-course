@@ -11,7 +11,7 @@ if(isset($_COOKIE['tutor_id'])){
 
 if(isset($_POST['delete_video'])){
    $delete_id = $_POST['video_id'];
-   $delete_id = filter_var($delete_id, FILTER_SANITIZE_STRING);
+   $delete_id = filter_var($delete_id);
    $verify_video = $conn->prepare("SELECT * FROM `content` WHERE id = ? LIMIT 1");
    $verify_video->execute([$delete_id]);
    if($verify_video->rowCount() > 0){
@@ -60,6 +60,19 @@ if(isset($_POST['delete_video'])){
 <section class="contents">
 
    <h1 class="heading">your contents</h1>
+
+   <?php
+      if(isset($message)){
+         foreach($message as $message){
+            echo '
+            <div class="message">
+               <span>'.$message.'</span>
+               <i class="fas fa-times" onclick="this.parentElement.remove();"></i>
+            </div>
+            ';
+         }
+      }
+   ?>
 
    <div class="box-container">
 

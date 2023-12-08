@@ -33,10 +33,8 @@ $titles = $select_titles->fetchAll(PDO::FETCH_COLUMN);
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <title>home</title>
 
-   <!-- font awesome cdn link  -->
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
 
-   <!-- custom css file link  -->
    <link rel="stylesheet" href="css/style.css">
 
 </head>
@@ -48,7 +46,7 @@ $titles = $select_titles->fetchAll(PDO::FETCH_COLUMN);
 
 <section class="quick-select">
 
-   <h1 class="heading">quick options</h1>
+   <h1 class="heading">Quick options</h1>
 
    <div class="box-container">
 
@@ -112,7 +110,7 @@ $titles = $select_titles->fetchAll(PDO::FETCH_COLUMN);
       <div class="box tutor">
          <h3 class="title">Become a Tutor</h3>
          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa, laudantium.</p>
-         <a href="admin/register.php" class="inline-btn">Resgister As A Tutor</a>
+         <a href="admin/register.php" class="inline-btn">Register As A Tutor</a>
       </div>
 
    </div>

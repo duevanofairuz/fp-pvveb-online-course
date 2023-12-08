@@ -20,7 +20,7 @@ if(isset($_POST['like_content'])){
    if($user_id != ''){
 
       $content_id = $_POST['content_id'];
-      $content_id = filter_var($content_id, FILTER_SANITIZE_STRING);
+      $content_id = filter_var($content_id);
 
       $select_content = $conn->prepare("SELECT * FROM `content` WHERE id = ? LIMIT 1");
       $select_content->execute([$content_id]);
@@ -34,15 +34,15 @@ if(isset($_POST['like_content'])){
       if($select_likes->rowCount() > 0){
          $remove_likes = $conn->prepare("DELETE FROM `likes` WHERE user_id = ? AND content_id = ?");
          $remove_likes->execute([$user_id, $content_id]);
-         $message[] = 'removed from likes!';
+         $message[] = 'Removed from likes!';
       }else{
          $insert_likes = $conn->prepare("INSERT INTO `likes`(user_id, tutor_id, content_id) VALUES(?,?,?)");
          $insert_likes->execute([$user_id, $tutor_id, $content_id]);
-         $message[] = 'added to likes!';
+         $message[] = 'Added to likes!';
       }
 
    }else{
-      $message[] = 'please login first!';
+      $message[] = 'Please login first!';
    }
 
 }
@@ -53,9 +53,9 @@ if(isset($_POST['add_comment'])){
 
       $id = unique_id();
       $comment_box = $_POST['comment_box'];
-      $comment_box = filter_var($comment_box, FILTER_SANITIZE_STRING);
+      $comment_box = filter_var($comment_box);
       $content_id = $_POST['content_id'];
-      $content_id = filter_var($content_id, FILTER_SANITIZE_STRING);
+      $content_id = filter_var($content_id);
 
       $select_content = $conn->prepare("SELECT * FROM `content` WHERE id = ? LIMIT 1");
       $select_content->execute([$content_id]);
@@ -77,11 +77,11 @@ if(isset($_POST['add_comment'])){
          }
 
       }else{
-         $message[] = 'something went wrong!';
+         $message[] = 'Something went wrong!';
       }
 
    }else{
-      $message[] = 'please login first!';
+      $message[] = 'Please login first!';
    }
 
 }
@@ -89,7 +89,7 @@ if(isset($_POST['add_comment'])){
 if(isset($_POST['delete_comment'])){
 
    $delete_id = $_POST['comment_id'];
-   $delete_id = filter_var($delete_id, FILTER_SANITIZE_STRING);
+   $delete_id = filter_var($delete_id);
 
    $verify_comment = $conn->prepare("SELECT * FROM `comments` WHERE id = ?");
    $verify_comment->execute([$delete_id]);
@@ -97,9 +97,9 @@ if(isset($_POST['delete_comment'])){
    if($verify_comment->rowCount() > 0){
       $delete_comment = $conn->prepare("DELETE FROM `comments` WHERE id = ?");
       $delete_comment->execute([$delete_id]);
-      $message[] = 'comment deleted successfully!';
+      $message[] = 'Comment deleted successfully!';
    }else{
-      $message[] = 'comment already deleted!';
+      $message[] = 'Comment already deleted!';
    }
 
 }
@@ -107,19 +107,19 @@ if(isset($_POST['delete_comment'])){
 if(isset($_POST['update_now'])){
 
    $update_id = $_POST['update_id'];
-   $update_id = filter_var($update_id, FILTER_SANITIZE_STRING);
+   $update_id = filter_var($update_id);
    $update_box = $_POST['update_box'];
-   $update_box = filter_var($update_box, FILTER_SANITIZE_STRING);
+   $update_box = filter_var($update_box);
 
    $verify_comment = $conn->prepare("SELECT * FROM `comments` WHERE id = ? AND comment = ?");
    $verify_comment->execute([$update_id, $update_box]);
 
    if($verify_comment->rowCount() > 0){
-      $message[] = 'comment already added!';
+      $message[] = 'Comment already added!';
    }else{
       $update_comment = $conn->prepare("UPDATE `comments` SET comment = ? WHERE id = ?");
       $update_comment->execute([$update_box, $update_id]);
-      $message[] = 'comment edited successfully!';
+      $message[] = 'Comment edited successfully!';
    }
 
 }
@@ -148,7 +148,7 @@ if(isset($_POST['update_now'])){
 <?php
    if(isset($_POST['edit_comment'])){
       $edit_id = $_POST['comment_id'];
-      $edit_id = filter_var($edit_id, FILTER_SANITIZE_STRING);
+      $edit_id = filter_var($edit_id);
       $verify_comment = $conn->prepare("SELECT * FROM `comments` WHERE id = ? LIMIT 1");
       $verify_comment->execute([$edit_id]);
       if($verify_comment->rowCount() > 0){
@@ -167,7 +167,7 @@ if(isset($_POST['update_now'])){
 </section>
 <?php
    }else{
-      $message[] = 'comment was not found!';
+      $message[] = 'Comment was not found!';
    }
 }
 ?>
@@ -175,6 +175,19 @@ if(isset($_POST['update_now'])){
 <!-- watch video section starts  -->
 
 <section class="watch-video">
+
+   <?php
+      if(isset($message)){
+         foreach($message as $message){
+            echo '
+            <div class="message">
+               <span>'.$message.'</span>
+               <i class="fas fa-times" onclick="this.parentElement.remove();"></i>
+            </div>
+            ';
+         }
+      }
+   ?>
 
    <?php
       $select_content = $conn->prepare("SELECT * FROM `content` WHERE id = ? AND status = ?");

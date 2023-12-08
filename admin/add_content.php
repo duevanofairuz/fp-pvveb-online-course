@@ -13,16 +13,16 @@ if(isset($_POST['submit'])){
 
    $id = unique_id();
    $status = $_POST['status'];
-   $status = filter_var($status, FILTER_SANITIZE_STRING);
+   $status = filter_var($status);
    $title = $_POST['title'];
-   $title = filter_var($title, FILTER_SANITIZE_STRING);
+   $title = filter_var($title);
    $description = $_POST['description'];
-   $description = filter_var($description, FILTER_SANITIZE_STRING);
+   $description = filter_var($description);
    $playlist = $_POST['playlist'];
-   $playlist = filter_var($playlist, FILTER_SANITIZE_STRING);
+   $playlist = filter_var($playlist);
 
    $thumb = $_FILES['thumb']['name'];
-   $thumb = filter_var($thumb, FILTER_SANITIZE_STRING);
+   $thumb = filter_var($thumb);
    $thumb_ext = pathinfo($thumb, PATHINFO_EXTENSION);
    $rename_thumb = unique_id().'.'.$thumb_ext;
    $thumb_size = $_FILES['thumb']['size'];
@@ -30,7 +30,7 @@ if(isset($_POST['submit'])){
    $thumb_folder = '../uploaded_files/'.$rename_thumb;
 
    $video = $_FILES['video']['name'];
-   $video = filter_var($video, FILTER_SANITIZE_STRING);
+   $video = filter_var($video);
    $video_ext = pathinfo($video, PATHINFO_EXTENSION);
    $rename_video = unique_id().'.'.$video_ext;
    $video_tmp_name = $_FILES['video']['tmp_name'];
@@ -43,7 +43,7 @@ if(isset($_POST['submit'])){
       $add_playlist->execute([$id, $tutor_id, $playlist, $title, $description, $rename_video, $rename_thumb, $status]);
       move_uploaded_file($thumb_tmp_name, $thumb_folder);
       move_uploaded_file($video_tmp_name, $video_folder);
-      $message[] = 'new course uploaded!';
+      $message[] = 'New content uploaded!';
    }
 
    
@@ -75,12 +75,25 @@ if(isset($_POST['submit'])){
 
    <h1 class="heading">upload content</h1>
 
+   <?php
+      if(isset($message)){
+         foreach($message as $message){
+            echo '
+            <div class="message">
+               <span>'.$message.'</span>
+               <i class="fas fa-times" onclick="this.parentElement.remove();"></i>
+            </div>
+            ';
+         }
+      }
+   ?>
+
    <form action="" method="post" enctype="multipart/form-data">
       <p>video status <span>*</span></p>
       <select name="status" class="box" required>
          <option value="" selected disabled>-- select status</option>
-         <option value="active">active</option>
-         <option value="deactive">deactive</option>
+         <option value="active">Active</option>
+         <option value="deactive">Inactive</option>
       </select>
       <p>video title <span>*</span></p>
       <input type="text" name="title" maxlength="100" required placeholder="enter video title" class="box">
@@ -113,21 +126,6 @@ if(isset($_POST['submit'])){
    </form>
 
 </section>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <?php include '../components/footer.php'; ?>
 
 <script src="../js/admin_script.js"></script>
