@@ -65,6 +65,7 @@ if(isset($message)){
       <p>your password <span>*</span></p>
       <input type="password" name="pass" placeholder="enter your password" maxlength="20" required class="box">
       <p class="link">don't have an account? <a href="register.php">register new</a></p>
+      <p class="link" style="font-size: 15px; padding: 0">or <a href="../login.php">login as student</a></p>
       <input type="submit" name="submit" value="login now" class="btn">
    </form>
 
