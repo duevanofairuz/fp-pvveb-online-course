@@ -113,6 +113,7 @@ if(isset($_POST['submit'])){
 
 <section class="form-container" style="min-height: calc(100vh - 19rem);">
 
+
    <form action="" method="post" enctype="multipart/form-data">
       <h3>update profile</h3>
       <div class="flex">
