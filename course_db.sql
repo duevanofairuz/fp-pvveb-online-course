@@ -44,7 +44,7 @@ CREATE TABLE `comments` (
   `user_id` varchar(20) NOT NULL,
   `tutor_id` varchar(20) NOT NULL,
   `comment` varchar(1000) NOT NULL,
-  `date` date NOT NULL DEFAULT current_timestamp()
+  `date` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -74,7 +74,7 @@ CREATE TABLE `content` (
   `description` varchar(1000) NOT NULL,
   `video` varchar(100) NOT NULL,
   `thumb` varchar(100) NOT NULL,
-  `date` date NOT NULL DEFAULT current_timestamp(),
+  `date` datetime NOT NULL DEFAULT current_timestamp(),
   `status` varchar(20) NOT NULL DEFAULT 'deactive'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -102,7 +102,7 @@ CREATE TABLE `playlist` (
   `title` varchar(100) NOT NULL,
   `description` varchar(1000) NOT NULL,
   `thumb` varchar(100) NOT NULL,
-  `date` date NOT NULL DEFAULT current_timestamp(),
+  `date` datetime NOT NULL DEFAULT current_timestamp(),
   `status` varchar(20) NOT NULL DEFAULT 'deactive'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 

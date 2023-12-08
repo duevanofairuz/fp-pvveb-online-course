@@ -46,6 +46,19 @@ $total_bookmarked = $select_bookmark->rowCount();
 
    <h1 class="heading">profile details</h1>
 
+   <?php
+      if(isset($message)){
+         foreach($message as $message){
+            echo '
+            <div class="message">
+               <span>'.$message.'</span>
+               <i class="fas fa-times" onclick="this.parentElement.remove();"></i>
+            </div>
+            ';
+         }
+      }
+   ?>
+
    <div class="details">
 
       <div class="user">

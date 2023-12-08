@@ -20,9 +20,9 @@ $select_bookmark = $conn->prepare("SELECT * FROM `bookmark` WHERE user_id = ?");
 $select_bookmark->execute([$user_id]);
 $total_bookmarked = $select_bookmark->rowCount();
 
-$select_titles = $conn->prepare("SELECT title FROM playlist");
+$select_titles = $conn->prepare("SELECT title, id FROM playlist");
 $select_titles->execute();
-$titles = $select_titles->fetchAll(PDO::FETCH_COLUMN);
+$titles = $select_titles->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
 <!DOCTYPE html>
@@ -96,7 +96,7 @@ $titles = $select_titles->fetchAll(PDO::FETCH_COLUMN);
          <h3 class="title">popular topics</h3>
          <div class="flex">
             <?php foreach ($titles as $title) : ?>
-               <a href="#"><i class="fab fa-<?= $title ?>"></i><span><?= $title ?></span></a>
+               <a href="playlist.php?get_id=<?= $title['id']; ?>"><i class="fab fa-<?= $title['title'] ?>"></i><span><?= $title['title'] ?></span></a>
             <?php endforeach; ?>
             <!-- 
             <a href="#"><i class="fab fa-html5"></i><span>HTML</span></a>

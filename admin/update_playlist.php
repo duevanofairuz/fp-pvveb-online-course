@@ -19,19 +19,19 @@ if(isset($_GET['get_id'])){
 if(isset($_POST['submit'])){
 
    $title = $_POST['title'];
-   $title = filter_var($title, FILTER_SANITIZE_STRING);
+   $title = filter_var($title);
    $description = $_POST['description'];
-   $description = filter_var($description, FILTER_SANITIZE_STRING);
+   $description = filter_var($description);
    $status = $_POST['status'];
-   $status = filter_var($status, FILTER_SANITIZE_STRING);
+   $status = filter_var($status);
 
    $update_playlist = $conn->prepare("UPDATE `playlist` SET title = ?, description = ?, status = ? WHERE id = ?");
    $update_playlist->execute([$title, $description, $status, $get_id]);
 
    $old_image = $_POST['old_image'];
-   $old_image = filter_var($old_image, FILTER_SANITIZE_STRING);
+   $old_image = filter_var($old_image);
    $image = $_FILES['image']['name'];
-   $image = filter_var($image, FILTER_SANITIZE_STRING);
+   $image = filter_var($image);
    $ext = pathinfo($image, PATHINFO_EXTENSION);
    $rename = unique_id().'.'.$ext;
    $image_size = $_FILES['image']['size'];
@@ -51,7 +51,7 @@ if(isset($_POST['submit'])){
       }
    } 
 
-   $message[] = 'playlist updated!';  
+   $message[] = 'Playlist updated!';  
 
 }
 
@@ -93,6 +93,19 @@ if(isset($_POST['delete'])){
 <section class="playlist-form">
 
    <h1 class="heading">update playlist</h1>
+
+   <?php
+      if(isset($message)){
+         foreach($message as $message){
+            echo '
+            <div class="message">
+               <span>'.$message.'</span>
+               <i class="fas fa-times" onclick="this.parentElement.remove();"></i>
+            </div>
+            ';
+         }
+      }
+   ?>
 
    <?php
          $select_playlist = $conn->prepare("SELECT * FROM `playlist` WHERE id = ?");

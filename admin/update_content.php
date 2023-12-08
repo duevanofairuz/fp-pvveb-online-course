@@ -134,6 +134,19 @@ if(isset($_POST['delete_video'])){
    <h1 class="heading">update content</h1>
 
    <?php
+      if(isset($message)){
+         foreach($message as $message){
+            echo '
+            <div class="message">
+               <span>'.$message.'</span>
+               <i class="fas fa-times" onclick="this.parentElement.remove();"></i>
+            </div>
+            ';
+         }
+      }
+   ?>
+
+   <?php
       $select_videos = $conn->prepare("SELECT * FROM `content` WHERE id = ? AND tutor_id = ?");
       $select_videos->execute([$get_id, $tutor_id]);
       if($select_videos->rowCount() > 0){

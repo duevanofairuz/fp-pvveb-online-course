@@ -6,18 +6,18 @@ if(isset($_POST['submit'])){
 
    $id = unique_id();
    $name = $_POST['name'];
-   $name = filter_var($name, FILTER_SANITIZE_STRING);
+   $name = filter_var($name);
    $profession = $_POST['profession'];
-   $profession = filter_var($profession, FILTER_SANITIZE_STRING);
+   $profession = filter_var($profession);
    $email = $_POST['email'];
-   $email = filter_var($email, FILTER_SANITIZE_STRING);
+   $email = filter_var($email);
    $pass = sha1($_POST['pass']);
-   $pass = filter_var($pass, FILTER_SANITIZE_STRING);
+   $pass = filter_var($pass);
    $cpass = sha1($_POST['cpass']);
-   $cpass = filter_var($cpass, FILTER_SANITIZE_STRING);
+   $cpass = filter_var($cpass);
 
    $image = $_FILES['image']['name'];
-   $image = filter_var($image, FILTER_SANITIZE_STRING);
+   $image = filter_var($image);
    $ext = pathinfo($image, PATHINFO_EXTENSION);
    $rename = unique_id().'.'.$ext;
    $image_size = $_FILES['image']['size'];
@@ -83,7 +83,7 @@ if(isset($message)){
       <div class="flex">
          <div class="col">
             <p>your name <span>*</span></p>
-            <input type="text" name="name" placeholder="eneter your name" maxlength="50" required class="box">
+            <input type="text" name="name" placeholder="enter your name" maxlength="50" required class="box">
             <p>your profession <span>*</span></p>
             <select name="profession" class="box" required>
                <option value="" disabled selected>-- select your profession</option>
@@ -116,19 +116,6 @@ if(isset($message)){
    </form>
 
 </section>
-
-<!-- registe section ends -->
-
-
-
-
-
-
-
-
-
-
-
 
 <script>
 
