@@ -31,13 +31,15 @@ $titles = $select_titles->fetchAll(PDO::FETCH_ASSOC);
    <meta charset="UTF-8">
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>home</title>
+   <title>Home</title>
 
    <!-- font awesome cdn link  -->
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
 
    <!-- custom css file link  -->
    <link rel="stylesheet" href="css/style.css">
+
+   <link rel="shortcut icon" href="images/accendfavicon.png" type="image/x-icon">
 
 </head>
 <body>
@@ -56,13 +58,13 @@ $titles = $select_titles->fetchAll(PDO::FETCH_ASSOC);
          if($user_id != ''){
       ?>
       <div class="box">
-         <h3 class="title">Likes and comments</h3>
-         <p>Total likes : <span><?= $total_likes; ?></span></p>
-         <a href="likes.php" class="inline-btn">View likes</a>
-         <p>Total comments : <span><?= $total_comments; ?></span></p>
-         <a href="comments.php" class="inline-btn">View comments</a>
-         <p>Saved playlist : <span><?= $total_bookmarked; ?></span></p>
-         <a href="bookmark.php" class="inline-btn">View bookmark</a>
+         <h3 class="title">Likes and Comments</h3>
+         <p>Total Likes : <span><?= $total_likes; ?></span></p>
+         <a href="likes.php" class="inline-btn">View Likes</a>
+         <p>Total Comments : <span><?= $total_comments; ?></span></p>
+         <a href="comments.php" class="inline-btn">View Comments</a>
+         <p>Saved Playlists : <span><?= $total_bookmarked; ?></span></p>
+         <a href="bookmark.php" class="inline-btn">View Bookmark</a>
       </div>
       <?php
          }else{ 
@@ -93,7 +95,7 @@ $titles = $select_titles->fetchAll(PDO::FETCH_ASSOC);
       </div> -->
 
       <div class="box">
-         <h3 class="title">popular topics</h3>
+         <h3 class="title">Popular Topics</h3>
          <div class="flex">
             <?php foreach ($titles as $title) : ?>
                <a href="playlist.php?get_id=<?= $title['id']; ?>"><i class="fab fa-<?= $title['title'] ?>"></i><span><?= $title['title'] ?></span></a>
@@ -111,8 +113,8 @@ $titles = $select_titles->fetchAll(PDO::FETCH_ASSOC);
 
       <div class="box tutor">
          <h3 class="title">Become a Tutor</h3>
-         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa, laudantium.</p>
-         <a href="admin/register.php" class="inline-btn">Resgister As A Tutor</a>
+         <p>Mari join bersama Aktual Cendikia Course sebagai tutor yang bermanfaat</p>
+         <a href="admin/register.php" class="inline-btn">Register as a Tutor</a>
       </div>
 
    </div>

@@ -103,7 +103,7 @@ section{
 
 .option-btn,
 .inline-option-btn{
-   background-color: var(--oragen);
+   background-color: var(--main-color);
 }
 
 .delete-btn,

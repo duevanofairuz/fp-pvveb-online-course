@@ -36,6 +36,7 @@ $total_bookmarked = $select_bookmark->rowCount();
 
    <!-- custom css file link  -->
    <link rel="stylesheet" href="css/style.css">
+   <link rel="shortcut icon" href="images/accendfavicon.png" type="image/x-icon">
 
 </head>
 <body>
@@ -126,7 +127,7 @@ $total_bookmarked = $select_bookmark->rowCount();
 
 <footer class="footer">
 
-   &copy; copyright @ 2022 by <span>mr. web designer</span> | all rights reserved!
+   &copy; Copyright @ 2023 by <span>PVVEB</span> | All rights reserved!
 
 </footer>
 

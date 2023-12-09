@@ -76,6 +76,7 @@ if(isset($_POST['delete_playlist'])){
 
    <!-- custom css file link  -->
    <link rel="stylesheet" href="../css/admin_style.css">
+   <link rel="shortcut icon" href="../images/accendfavicon.png" type="image/x-icon">
 
 </head>
 <body>

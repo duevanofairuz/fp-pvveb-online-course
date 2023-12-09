@@ -54,6 +54,7 @@ if(isset($_POST['tutor_fetch'])){
 
    <!-- custom css file link  -->
    <link rel="stylesheet" href="css/style.css">
+   <link rel="shortcut icon" href="images/accendfavicon.png" type="image/x-icon">
 
 </head>
 <body>

@@ -62,6 +62,7 @@ if(isset($_POST['update_now'])){
 
    <!-- custom css file link  -->
    <link rel="stylesheet" href="css/style.css">
+   <link rel="shortcut icon" href="images/accendfavicon.png" type="image/x-icon">
 
 </head>
 <body>
