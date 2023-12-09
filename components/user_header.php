@@ -3,7 +3,7 @@
 
    <section class="flex">
 
-      <a href="home.php" class="logo">ACC-in</a>
+      <a href="home.php" class="logo"><img src="images/Accend.png" style="width: 200px;"></a>
 
       <form action="search_course.php" method="post" class="search-form">
          <input type="text" name="search_course" placeholder="Find courses" required maxlength="100">

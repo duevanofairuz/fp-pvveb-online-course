@@ -3,7 +3,7 @@
 
    <section class="flex">
 
-      <a href="dashboard.php" class="logo">Admin.</a>
+      <a href="dashboard.php" class="logo"><img src="../images/Accend.png" style="width: 200px;"></a>
 
       <form action="search_page.php" method="post" class="search-form">
          <input type="text" name="search" placeholder="search here..." required maxlength="100">

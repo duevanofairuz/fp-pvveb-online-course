@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;500;600&display=swap');
 
 :root{
-   --main-color:#8e44ad;
+   --main-color:#EB5757;
    --red:#e74c3c;
    --oragen:#f39c12;
    --white:#fff;
@@ -44,8 +44,8 @@ html{
 
 body{
    background-color: var(--light-bg);
-   padding-left: 30rem;
-   /* padding-bottom: 7rem; */
+   padding-right: 30rem;
+   transition: 1s;
 }
 
 body.dark{
@@ -57,7 +57,8 @@ body.dark{
 }
 
 body.active{
-   padding-left: 0;
+   padding-right: 0;
+   transition: 1s;
 }
 
 section{
@@ -292,12 +293,13 @@ section{
 
 .side-bar{
    position: fixed;
-   top: 0; left: 0;
+   top: 0; right: 0;
    height: 100vh;
    width: 30rem;
    background-color: var(--white);
    border-right: var(--border);
    z-index: 1200;
+   transition: 1s;
 }
 
 .side-bar .close-side-bar{
@@ -376,7 +378,8 @@ section{
 }
 
 .side-bar.active{
-   left: -31rem;
+   right: -31rem;
+   transition: 1s;
 }
 
 .form-container{
